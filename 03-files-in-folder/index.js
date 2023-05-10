@@ -11,10 +11,10 @@ files.then(
                 const point=file.name.indexOf('.');
                 const name=file.name.slice(0,point);
                 const ext=file.name.slice(point+1);
-                const stats = fs.statSync(path.join(__dirname,'secret-folder',file.name));
-                const fileSizeInBytes = (stats.size/1024).toFixed(3);
-                console.log(name+' - '+ext+' - '+fileSizeInBytes+'kb')
+                fs.stat(path.join(__dirname,'secret-folder',file.name), function(err, stats) {
+                    const fileSizeInBytes = (stats.size/1024).toFixed(3);
+                    console.log(name+' - '+ext+' - '+fileSizeInBytes+'kb')
+                });
             }
     },
-    function(error){console.log(2)}
 )
